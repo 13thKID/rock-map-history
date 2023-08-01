@@ -1,6 +1,7 @@
 import { Schema, Types, model, Model, HydratedDocument } from 'mongoose'
 
 export interface AlbumSchema {
+  title: string
   released: Date
   recorded: Date
   studio: string
@@ -16,6 +17,10 @@ export type AlbumModel = Model<AlbumMethods, NonNullable<unknown>, AlbumMethods>
 export type HydratedAlbum = HydratedDocument<AlbumSchema, AlbumMethods>
 
 const albumSchema = new Schema<AlbumSchema, AlbumModel, AlbumMethods>({
+  title: {
+    type: String,
+    required: true,
+  },
   released: {
     type: Date,
     required: true,

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start_dep": "nodemon ./src/index.ts",
-    "start": "ts-node-dev --respawn --transpile-only ./src/index.ts"
+    "start": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "seed": "ts-node ./src/seeders/album.ts"
   },
   "keywords": [],
   "author": "",

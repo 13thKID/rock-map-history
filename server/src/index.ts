@@ -11,6 +11,7 @@ if (!process.env) {
 }
 
 const port = process.env.PORT
+let server: ReturnType<typeof app.listen>
 
 const app = express()
 
@@ -19,8 +20,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(albumRoutes)
 app.use(handleUnknownRoutes)
 
-connectDb(() => {
-  app.listen(port, () => {
-    console.log(`TypeScript with Express http://localhost:${port}/`)
-  })
-})
+// connectDb(() => {
+//   server = app.listen(port, () => {
+//     console.log(`Listening on http://localhost:${port}/`)
+//   })
+// }, true)
+
+export default app

@@ -1,4 +1,13 @@
-import { Schema, Types, model, Model, HydratedDocument } from 'mongoose'
+import {
+  Schema,
+  Types,
+  model,
+  Model,
+  HydratedDocument,
+  Query,
+  Document,
+  QueryWithHelpers,
+} from 'mongoose'
 
 export interface AlbumSchema {
   title: string
@@ -10,13 +19,19 @@ export interface AlbumSchema {
   cover: string
 }
 
-type AlbumMethods = AlbumSchema
+interface AlbumMethods extends AlbumSchema {
+  sampleMethod(): Promise<void>
+}
 
-export type AlbumModel = Model<AlbumMethods, NonNullable<unknown>, AlbumMethods>
+interface AlbumQueryHelpers extends AlbumSchema {
+  byId(id: string): QueryWithHelpers<HydratedAlbum | null, HydratedAlbum, AlbumQueryHelpers>
+}
 
-export type HydratedAlbum = HydratedDocument<AlbumSchema, AlbumMethods>
+export type AlbumModel = Model<AlbumMethods, AlbumQueryHelpers, AlbumMethods>
 
-const albumSchema = new Schema<AlbumSchema, AlbumModel, AlbumMethods>({
+export type HydratedAlbum = HydratedDocument<AlbumSchema, AlbumMethods, AlbumQueryHelpers>
+
+const albumSchema = new Schema<AlbumSchema, AlbumModel, AlbumMethods, AlbumQueryHelpers>({
   title: {
     type: String,
     required: true,
@@ -46,5 +61,20 @@ const albumSchema = new Schema<AlbumSchema, AlbumModel, AlbumMethods>({
     required: true,
   },
 })
+
+/** Query helpers */
+
+albumSchema.query.byId = function (
+  this: QueryWithHelpers<HydratedAlbum | null, HydratedAlbum, AlbumQueryHelpers>,
+  id: string
+) {
+  return this.findOne({ _id: new Types.ObjectId(id) })
+}
+
+/** Methods */
+
+albumSchema.methods.sampleMethod = async function () {
+  null
+}
 
 export const Album = model<AlbumSchema, AlbumModel>('Album', albumSchema)

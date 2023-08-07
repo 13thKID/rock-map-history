@@ -3,7 +3,8 @@
     "files": true
   },
   "files": [
-    "src/index.ts",
+    "src/app.ts",
+    "src/server.ts",
     "src/types/global.d.ts"
   ],
   "exclude": [

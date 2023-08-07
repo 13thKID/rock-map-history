@@ -2,10 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start_dep": "nodemon ./src/index.ts",
-    "start": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "start_dep": "nodemon ./src/server.ts",
+    "start": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "seed": "ts-node ./src/seeders/album.ts",
     "test": "jest --runInBand --testTimeout=10000 ./src/routes/__tests__/*.spec.ts"
   },

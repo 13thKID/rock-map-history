@@ -1,7 +1,7 @@
 import express from 'express'
 import { CONNECTION_URL } from '../../config/db.config'
 import mongoose from 'mongoose'
-import app from '../../index'
+import app from '../../app'
 import { describe, expect, test, beforeAll, afterAll, it } from '@jest/globals'
 import request from 'supertest'
 import { ReqErr } from '../../classes/RequestError'

@@ -1,7 +1,7 @@
 import express from 'express'
 import { CONNECTION_URL } from '../../config/db.config'
 import mongoose from 'mongoose'
-import app from '../../index'
+import app from '../../app'
 import { describe, expect, test, beforeAll, afterAll, it } from '@jest/globals'
 import request from 'supertest'
 
@@ -21,7 +21,7 @@ describe('POST /albums', () => {
   it('Should return id', async () => {
     const res = await request(app).post('/albums')
     expect(res.statusCode).toBe(200)
-    expect(typeof res.body).toBeInstanceOf('string')
+    expect(typeof res.body).toEqual('string')
   })
 })
 

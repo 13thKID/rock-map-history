@@ -1,5 +1,5 @@
 import connectDb from './src/config/db.config'
-import app from './src/index'
+import app from './src/app'
 
 require('ts-node/register')
 
